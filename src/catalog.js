@@ -40,9 +40,9 @@ export const bridges=[
 export const statuses={implemented:'Documented handoff',candidate:'Candidate / bounded',proposed:'Proposed'};
 export const roadmap=[
  {version:'v0.1',name:'Studio Lot',status:'Done',detail:'Catalog, working dashboard, evidence-first bridge inspector and portable inventory.'},
- {version:'v0.2',name:'Bridge Audit',status:'Current',detail:'First read-only Framefield → Domistika XR bridge shipped; add pinned producer/receiver acceptance and Quest device testing. Full reverse-editable bridge still missing.'},
- {version:'v0.3',name:'Production Ledger',status:'Next',detail:'Portable production manifests, asset IDs, hashes, human approvals and local checkpoints.'},
- {version:'v0.4',name:'Production 001',status:'Planned',detail:'An original asset moving through real qualified studios into a reviewed deliverable.'}
+ {version:'v0.2',name:'Bridge Audit',status:'Done',detail:'Read-only Framefield → Domistika XR bridge shipped with pinned producer/receiver acceptance. Quest device test and reverse-editable path still pending.'},
+ {version:'v0.3',name:'Production Ledger',status:'Current',detail:'Browser-local portable production manifests, file fingerprints, planned transfers, operator-reported results and non-publishing review receipts.'},
+ {version:'v0.4',name:'Production 001',status:'Next',detail:'An original asset moving through real qualified studios into a reviewed deliverable.'}
 ];
 export const lookup=id=>studios.find(s=>s.id===id)||null;
 export const filterStudios=(query='',department='All')=>studios.filter(s=>(department==='All'||s.dept===department)&&[s.name,s.dept,s.description,...s.capabilities].join(' ').toLowerCase().includes(query.trim().toLowerCase()));
