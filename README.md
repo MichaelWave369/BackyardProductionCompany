@@ -4,6 +4,12 @@
 
 BPC is an original, local-first studio lot and evidence-first pipeline atlas linking independently maintained creative projects. It is not a monolithic replacement for the editing, audio, XR, modeling or film applications.
 
+## v0.3 · Production Ledger
+
+BPC now has a **Production Ledger** tab for browser-local, portable production manifests (`bpc.production.v1`). Register user-selected file SHA-256 hashes, plan source-to-destination handoffs, record clearly labeled operator-reported transfer results, and keep human review decisions without implicitly granting publishing or execution rights.
+
+**Manual backup is essential:** the ledger is in memory only. Download `*.bpc-production.json` before refreshing/closing. Original assets aren't bundled, and files larger than 128 MiB aren't supported by this first whole-buffer hashing pass. See [Production Ledger v0.3](docs/PRODUCTION_LEDGER_V03.md).
+
 ## v0.2.1 · Studio Lot + Cross-Studio Bridge Acceptance
 
 Framefield now exports evaluated geometry and transform animation directly to Domistika XR as a **read-only local preview** via the BPC neutral format. The Studio Lot catalog records this specific one-way route as documented, and retains the **editable reverse path as proposed**.
@@ -38,10 +44,12 @@ https://michaelwave369.github.io/BackyardProductionCompany/
 ## Where the truth lives
 
 - src/catalog.js: curated studio inventory and explicit bridge claims
+- src/ledger/model.js: strict default-deny portable production manifest schema, human reports and reviews
+- src/ProductionLedger.jsx: browser-only production desk (no remote storage)
 - tests/catalog.test.mjs: catalog integrity, traceability and status classification tests
 - docs/BRIDGE_AUDIT_V01.md: handoff evidence, boundaries and future acceptance steps
 
-All links navigate deliberately. No user accounts, GitHub token, arbitrary external scripting, media upload, file scanning, hosted backend or auto-publishing are performed.
+All links navigate deliberately. No user accounts, GitHub token, arbitrary external scripting, hosted backend or auto-publishing are performed. The ledger *only hashes explicit user-selected files locally*; no file contents are uploaded or stored by BPC.
 
 ## Principles
 

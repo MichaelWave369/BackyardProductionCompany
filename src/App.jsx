@@ -1,4 +1,5 @@
 import {useMemo,useState} from 'react';
+import ProductionLedger from './ProductionLedger.jsx';
 import BridgeLab from './BridgeLab.jsx';
 import {SNAPSHOT,studios,bridges,roadmap,lookup,repoUrl,filterStudios,filterBridges,counts,exportSnapshot} from './catalog.js';
 
@@ -52,6 +53,7 @@ function Roadmap(){
 }
 export default function App(){
  const [page,setPage]=useState('lot');const [message,setMessage]=useState('');
+ const [production,setProduction]=useState(null); // persists across tab changes, never the network.
  const totals=counts();
  function download(){
    const url=URL.createObjectURL(new Blob([exportSnapshot()],{type:'application/json'}));
@@ -60,12 +62,12 @@ export default function App(){
  }
  return <div className="app" id="top">
  <header className="top"><a className="identity" href="#top"><Mark/><span><strong>BACKYARD<br/><em>PRODUCTION COMPANY</em></strong><small>THE INDEPENDENT CREATIVE LOT</small></span></a>
- <nav aria-label="Studio sections" className="nav">{[{id:'lot',text:'Studio Lot'},{id:'pipeline',text:'Pipeline Map'},{id:'bridge',text:'Bridge Lab'},{id:'roadmap',text:'Roadmap'}].map(t=><button type="button" key={t.id} aria-current={page===t.id?'page':undefined} className={page===t.id?'current':''} onClick={()=>setPage(t.id)}>{t.text}</button>)}</nav>
+ <nav aria-label="Studio sections" className="nav">{[{id:'lot',text:'Studio Lot'},{id:'pipeline',text:'Pipeline Map'},{id:'bridge',text:'Bridge Lab'},{id:'ledger',text:'Production Ledger'},{id:'roadmap',text:'Roadmap'}].map(t=><button type="button" key={t.id} aria-current={page===t.id?'page':undefined} className={page===t.id?'current':''} onClick={()=>setPage(t.id)}>{t.text}</button>)}</nav>
  <Link href={repoUrl('BackyardProductionCompany')} className="repo-btn">SOURCE</Link></header>
  <main>
- <section className="hero"><div className="hero-layout"><div className="hero-copy"><p className="eyebrow"><span className="signal"/> NOW OPEN · STUDIO LOT + BRIDGE LAB V0.2</p><h1>From the <em>backyard</em><br/>to the universe<span className="period">.</span></h1><p>The headquarters for our independent creative studios. Art, animation, sound, film, games and XR. One shared production vision, without giving up control.</p><div className="hero-buttons"><button className="button primary" onClick={()=>setPage('pipeline')}>Explore the pipeline <span aria-hidden="true">→</span></button><button className="button secondary" onClick={download}>Export inventory <span aria-hidden="true">↓</span></button></div>{message&&<p role="status" className="success">{message}</p>}</div>
+ <section className="hero"><div className="hero-layout"><div className="hero-copy"><p className="eyebrow"><span className="signal"/> NOW OPEN · STUDIO LOT + PRODUCTION LEDGER V0.3</p><h1>From the <em>backyard</em><br/>to the universe<span className="period">.</span></h1><p>The headquarters for our independent creative studios. Art, animation, sound, film, games and XR. One shared production vision, without giving up control.</p><div className="hero-buttons"><button className="button primary" onClick={()=>setPage('pipeline')}>Explore the pipeline <span aria-hidden="true">→</span></button><button className="button secondary" onClick={download}>Export inventory <span aria-hidden="true">↓</span></button></div>{message&&<p role="status" className="success">{message}</p>}</div>
  <div className="hero-visual" aria-hidden="true"><div className="orb orb-a"/><div className="orb orb-b"/><div className="orb orb-c"/><div className="flap flap-left"/><div className="flap flap-right"/><div className="huge-logo">B<span>P</span>C</div><small>STUDIO LOT • EST. 2026</small></div></div></section>
  <div className="stats"><div><strong>{totals.studios.toString().padStart(2,'0')}</strong><span>CATALOGED STUDIOS</span></div><div><strong>{totals.implemented.toString().padStart(2,'0')}</strong><span>DOCUMENTED HANDOFFS</span></div><div><strong>{totals.candidate.toString().padStart(2,'0')}</strong><span>CANDIDATE BRIDGES</span></div><div><strong>{totals.proposed.toString().padStart(2,'0')}</strong><span>PROPOSED LINKS</span></div></div>
- <div className="main-content"><div className="subnav"><span className="eyebrow">BPC / CREATIVE SYSTEMS</span><span>Evidence snapshot: {SNAPSHOT} · Not live telemetry</span></div>{page==='lot'?<StudioLot/>:page==='pipeline'?<Pipeline/>:page==='bridge'?<BridgeLab/>:<Roadmap/>}</div>
+ <div className="main-content"><div className="subnav"><span className="eyebrow">BPC / CREATIVE SYSTEMS</span><span>Evidence snapshot: {SNAPSHOT} · Not live telemetry</span></div>{page==='lot'?<StudioLot/>:page==='pipeline'?<Pipeline/>:page==='bridge'?<BridgeLab/>:page==='ledger'?<ProductionLedger production={production} onChange={setProduction}/>:<Roadmap/>}</div>
  </main><footer><div className="footer-id"><Mark/><span><strong>BACKYARD PRODUCTION COMPANY</strong><small>FROM THE BACKYARD TO THE UNIVERSE</small></span></div><span>People Above Profit · Ledger Above Ego</span><span>© 2026 BPC · MIT · Independently built</span></footer></div>;
 }
