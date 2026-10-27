@@ -1,14 +1,14 @@
-// BPC evidence snapshot, not live telemetry. Reviewed 2026-10-26.
+// BPC evidence snapshot, not live telemetry. Reviewed 2026-10-27.
 // 'implemented' means the specified bounded handoff, never publishing/render authority.
-export const SNAPSHOT='2026-10-26';
+export const SNAPSHOT='2026-10-27';
 const owner='MichaelWave369';
 export const repoUrl=(name,path='')=>'https://github.com/'+owner+'/'+name+(path?'/blob/main/'+path:'');
 const studio=(id,name,dept,repo,status,description,capabilities=[],evidence='',launch='')=>({id,name,dept,repo,status,description,capabilities,evidence,launch});
 export const studios=[
  studio('dom','Domistika','Art','Domistika','working','Drawing, advanced symmetry, layers and verified art handoffs.',['Symmetry','Painting','PSD'],'docs/FIELD_QUALIFICATION_V0942.md','https://michaelwave369.github.io/Domistika/'),
- studio('xr','Domistika XR','XR','Domistika','experimental','Spatial canvas painting, movement and WebXR input. True free-air strokes are not implemented yet.',['Spatial sketch','WebXR'],'docs/DOMISTIKA_XR_V010.md','https://michaelwave369.github.io/Domistika/xr.html'),
+ studio('xr','Domistika XR','XR','Domistika','experimental','Spatial canvas painting and read-only Framefield mesh/animation preview in desktop or WebXR. True free-air strokes are not implemented yet.',['Spatial sketch','WebXR','3D preview'],'docs/XR_BPC_FRAMEFIELD_ANIMATION.md','https://michaelwave369.github.io/Domistika/xr.html'),
  studio('aur','Auralith369','Art','Auralith369','alpha','Photoshop-inspired image finishing, composite layers, LUTs and style cards.',['Image editing','Compositing'],'docs/CREATIVE_BRIDGE_V2_V073.md','https://michaelwave369.github.io/Auralith369/'),
- studio('frame','FramefieldStudio','3D & Animation','FramefieldStudio','candidate','Editable 3D meshes, non-destructive modifiers, keyframes, graph editor and shot rendering.',['3D mesh','Animation'],'docs/V1_RELEASE_CHECKLIST.md','https://michaelwave369.github.io/FramefieldStudio/'),
+ studio('frame','FramefieldStudio','3D & Animation','FramefieldStudio','candidate','Editable 3D meshes, non-destructive modifiers, animation keyframes and one-click BPC XR preview export.',['3D mesh','Animation','Export BPC XR'],'docs/BPC_XR_NATIVE_EXPORT_V01.md','https://michaelwave369.github.io/FramefieldStudio/'),
  studio('pixel','PixelForge','3D & Animation','parallax-pixelforge','audit','Related asset workshop; exact present-day capabilities require source-level audit.',['Game assets']),
  studio('box','PhiBox','Audio','PhiBox','working','Live Web Audio groovebox: sampler, drum machine, MIDI and sequencer.',['Sampler','MIDI'],'docs/PERFORMANCE.md','https://michaelwave369.github.io/PhiBox/'),
  studio('audio','PHIAudio','Audio','PHIAudio','candidate','Deterministic audio-engine interfaces and receipts. Full audio runtime remains a roadmap item.',['Audio contracts','DSP roadmap'],'docs/ARCHITECTURE.md'),
@@ -30,6 +30,7 @@ export const bridges=[
  bridge('cine-reel','cine','reel','implemented','Media evidence','Conditional MP4 hash verification','REEL can inspect manually selected actual MP4 bytes and unsigned CineSwarm evidence JSON. No completed film or publisher approval is claimed.','ReelCommons','docs/REEL_REAL_MEDIA_EDITORIAL_INTAKE.md'),
  bridge('cine-cut','cine','cut','implemented','Editorial','Verified-byte media intake','ParaCut can inspect manually selected real MP4 + evidence and add a clip. No automatic uploads or releases.','paracut','docs/STUDIO_R89.md'),
  bridge('louvre-dom','louvre','dom','implemented','SVG','Bounded SVG handoff','Domistika can explicitly receive and rasterize a filtered short-lived SVG from Silicon Louvre.','Domistika','docs/SILICON_LOUVRE_HANDOFF_V1.md'),
+ bridge('frame-xr-preview','frame','xr','implemented','3D + Animation','Read-only animated mesh preview','Framefield exports evaluated visible meshes and transform keyframes into a local BPC JSON; Domistika XR parses the bounded file, displays geometry and plays animation. No native editing, scene persistence or confirmed headset acceptance.','Domistika','docs/XR_BPC_FRAMEFIELD_ANIMATION.md'),
  bridge('xr-frame','xr','frame','proposed','3D','Editable mesh handoff','3D stroke, mesh and transform schema mapping requires design, testing and permission boundaries.'),
  bridge('frame-pixel','frame','pixel','proposed','Game assets','Mesh and animation transfer','Research PixelForge source importer before implementing GLB or native mesh interchange.'),
  bridge('box-audio','box','audio','proposed','Audio','Stems and MIDI handoff','PHIAudio core DSP integration is not yet a qualified audio-runtime implementation.'),
@@ -38,9 +39,9 @@ export const bridges=[
 ];
 export const statuses={implemented:'Documented handoff',candidate:'Candidate / bounded',proposed:'Proposed'};
 export const roadmap=[
- {version:'v0.1',name:'Studio Lot',status:'Now',detail:'Catalog, working dashboard, evidence-first bridge inspector and portable inventory.'},
- {version:'v0.2',name:'Bridge Audit',status:'Next',detail:'Validate actual producer and receiver source, versions, schema fixtures and testable round trips.'},
- {version:'v0.3',name:'Production Ledger',status:'Planned',detail:'Portable production manifests, asset IDs, hashes, human approvals and local checkpoints.'},
+ {version:'v0.1',name:'Studio Lot',status:'Done',detail:'Catalog, working dashboard, evidence-first bridge inspector and portable inventory.'},
+ {version:'v0.2',name:'Bridge Audit',status:'Current',detail:'First read-only Framefield → Domistika XR bridge shipped; add pinned producer/receiver acceptance and Quest device testing. Full reverse-editable bridge still missing.'},
+ {version:'v0.3',name:'Production Ledger',status:'Next',detail:'Portable production manifests, asset IDs, hashes, human approvals and local checkpoints.'},
  {version:'v0.4',name:'Production 001',status:'Planned',detail:'An original asset moving through real qualified studios into a reviewed deliverable.'}
 ];
 export const lookup=id=>studios.find(s=>s.id===id)||null;

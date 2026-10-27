@@ -21,3 +21,35 @@ jobs:
         run: npm run build
       - name: Check site artifact
         run: test -s dist/index.html
+
+  # This job imports the source exporter AND the source receiver from their
+  # upstream repositories. Pin SHAs to prevent silently changing contract
+  # semantics; upgrades are reviewed as their own BPC PR.
+  interop-acceptance:
+    name: Framefield → Domistika XR actual contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out BPC orchestrator
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check out verified Framefield source
+        uses: actions/checkout@v4
+        with:
+          repository: MichaelWave369/FramefieldStudio
+          ref: fb8b04be811f215f5c5219ccb0ab0ad8e636aeed
+          path: .interop/framefield
+          persist-credentials: false
+      - name: Check out verified Domistika receiver
+        uses: actions/checkout@v4
+        with:
+          repository: MichaelWave369/Domistika
+          ref: e85ec716395a85c4951dcf7e7699fb35f89400bf
+          path: .interop/domistika
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test real producer-to-consumer handoff
+        run: node --test tests/interop-crossrepo.mjs

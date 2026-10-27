@@ -4,6 +4,12 @@
 
 BPC is an original, local-first studio lot and evidence-first pipeline atlas linking independently maintained creative projects. It is not a monolithic replacement for the editing, audio, XR, modeling or film applications.
 
+## v0.2.1 · Studio Lot + Cross-Studio Bridge Acceptance
+
+Framefield now exports evaluated geometry and transform animation directly to Domistika XR as a **read-only local preview** via the BPC neutral format. The Studio Lot catalog records this specific one-way route as documented, and retains the **editable reverse path as proposed**.
+
+CI includes an isolated **real cross-repo exporter → receiver test**, with reviewed pinned source revisions; see [BPC cross-studio acceptance](docs/CROSS_STUDIO_ACCEPTANCE_V021.md). This validates the contracts and keyframe math but **does not qualify actual Quest 3 hardware, browser rendering, or native editing**.
+
 ## v0.1 · Studio Lot
 
 - Interactive React/Vite studio directory with capability and department search
