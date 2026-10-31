@@ -38,14 +38,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: MichaelWave369/FramefieldStudio
-          ref: fb8b04be811f215f5c5219ccb0ab0ad8e636aeed
+          ref: 196050ccfdd357d694871356dc6fcf6146f4b7af
           path: .interop/framefield
           persist-credentials: false
       - name: Check out verified Domistika receiver
         uses: actions/checkout@v4
         with:
           repository: MichaelWave369/Domistika
-          ref: e85ec716395a85c4951dcf7e7699fb35f89400bf
+          ref: 75aff934b44bb7df053e8c881054bb1d4eb1fbfe
           path: .interop/domistika
           persist-credentials: false
       - uses: actions/setup-node@v4
