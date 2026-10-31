@@ -15,8 +15,8 @@ This gate belongs to **BackyardProductionCompany**, the neutral production coord
 
 ## Pinned source revisions
 
-- FramefieldStudio **PR #17 merge**: \`fb8b04be811f215f5c5219ccb0ab0ad8e636aeed\`
-- Domistika **PR #55 merge**: \`e85ec716395a85c4951dcf7e7699fb35f89400bf\`
+- FramefieldStudio **2026-10-27 main, PR #20 merged**: \`196050ccfdd357d694871356dc6fcf6146f4b7af\`
+- Domistika **2026-10-28 main, PR #67 merged**: \`75aff934b44bb7df053e8c881054bb1d4eb1fbfe\`
 
 The workflow uses separate read-only GitHub checkouts in \`.interop/\`, ignored from BPC's Git tree. There are no stored access tokens, uploads, model execution, or edits to the two source repositories. When either producer or receiver changes, explicitly update these pinned SHAs in a reviewed PR and rerun this gate. A passing pinned check is **not automatic proof that the latest heads remain mutually compatible**.
 
@@ -29,3 +29,8 @@ Human workflow: [Framefield Studio](https://michaelwave369.github.io/FramefieldS
 The existing Domistika XR → Framefield *editable return path* remains **proposed**; this new documented one-way route should not be mistaken for that entire two-way feature.
 
 People Above Profit · Ledger Above Ego.
+
+
+## Current-head qualification refresh (2026-10-30)
+
+This reviewed gate attempts to qualify the above **newer exact upstream commits**, not moving main-branch names. Its checks remain limited to the producer/receiver module contract and tests, and a successful run does **not** establish GLB import fidelity, physical Quest 3 rendering, rights clearance, or ParaCut MP4 delivery. Follow the linked CI check for actual test results; never infer success from this documentation.
